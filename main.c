@@ -6,6 +6,9 @@
 #include "proc.h"
 #include "x86.h"
 
+// This variable is a global counter to keep track of the
+//  number of read() system calls made
+int readcount = 0;
 static void startothers(void);
 static void mpmain(void)  __attribute__((noreturn));
 extern pde_t *kpgdir;
@@ -17,6 +20,7 @@ extern char end[]; // first address after kernel loaded from ELF file
 int
 main(void)
 {
+  readcount = 0; // Initialize the read() system call counter to zero when the Kernel starts
   kinit1(end, P2V(4*1024*1024)); // phys page allocator
   kvmalloc();      // kernel page table
   mpinit();        // detect other processors

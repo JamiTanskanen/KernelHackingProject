@@ -165,6 +165,11 @@ extern uint     ticks;
 void            tvinit(void);
 extern struct spinlock tickslock;
 
+// This variable keeps track of the number of read() system calls made
+extern int readcount;
+// This function returns the count of read() system calls made
+int getreadcount(void);
+
 // uart.c
 void            uartinit(void);
 void            uartintr(void);

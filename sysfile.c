@@ -69,6 +69,7 @@ sys_dup(void)
 int
 sys_read(void)
 {
+  readcount++; // Incrementing the global readcount to track the number of read() system calls made
   struct file *f;
   int n;
   char *p;
